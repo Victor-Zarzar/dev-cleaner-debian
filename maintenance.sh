@@ -19,6 +19,7 @@ source "$SCRIPT_DIR/lib/android-clean.sh"
 source "$SCRIPT_DIR/lib/docker-clean.sh"
 source "$SCRIPT_DIR/lib/system-clean.sh"
 source "$SCRIPT_DIR/lib/storage-optimize.sh"
+source "$SCRIPT_DIR/lib/restart-system.sh"
 
 # Global variables
 TOTAL_CLEANED=0
@@ -54,6 +55,7 @@ show_menu() {
     echo "19) Optimize databases"
     echo "20) Verify system health"
     echo "21) View action log"
+    echo "22) Restart System"
     echo "0)  Exit"
     echo ""
     echo -n "Choose an option: "
@@ -93,6 +95,7 @@ run_full_maintenance() {
     # Optimization
     optimize_databases
     verify_system_health
+    restart_system
 
     local final_space=$(get_disk_usage)
 
@@ -148,6 +151,7 @@ main() {
             19) optimize_databases ;;
             20) verify_system_health ;;
             21) cat "$LOG_FILE" | less ;;
+            22) restart_system ;;
             0)
                 print_success "Goodbye!"
                 log_action "Script finished"

@@ -40,29 +40,16 @@ maintenance-debian/
 │   ├── docker-clean.sh       # Docker cleanup
 │   ├── system-clean.sh       # System caches, logs, temp files
 │   └── storage-optimize.sh   # Storage optimization and kernels
+│   └── restart-system.sh     # Restart system
 └── README.md                 # This file
 ```
 
 ## Installation
 
-Clone the repository or create the directory structure:
-
 ```bash
-mkdir -p maintenance-debian/lib
-cd maintenance-debian
-```
-
-Copy all the provided files to their respective locations, then make the main script executable:
-
-```bash
+git clone https://github.com/Victor-Zarzar/script-maintenance-debian
+cd script-maintenance-debian
 chmod +x maintenance.sh
-```
-
-## Usage
-
-Run the script:
-
-```bash
 ./maintenance.sh
 ```
 
@@ -89,7 +76,8 @@ The script will display an interactive menu with the following options:
 19. Optimize databases
 20. Verify system health
 21. View action log
-22. Exit
+22. Restart system
+23. Exit
 
 ## What Gets Cleaned
 
