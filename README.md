@@ -1,4 +1,10 @@
-# Debian/Ubuntu Maintenance Script
+<h1 id="screenshot">Screenshots</h1>
+
+<p align="center">
+  <img src="https://github.com/user-attachments/assets/737d4f27-8f8c-4625-848d-e09a4068a073" width="1000" height="600" alt="Screenshot">
+</p>
+
+# dev cleaner Debian/Ubuntu
 
 A comprehensive, modular automated maintenance script for Debian/Ubuntu systems that helps clean cache files, optimize storage, and keep your system running smoothly.
 
@@ -27,7 +33,7 @@ A comprehensive, modular automated maintenance script for Debian/Ubuntu systems 
 ## Project Structure
 
 ```
-maintenance-debian/
+dev-cleaner-debian/
 ├── maintenance.sh            # Main script with interactive menu
 ├── lib/                      # Modular components
 │   ├── colors.sh             # Color definitions for output
@@ -47,8 +53,8 @@ maintenance-debian/
 ## Installation
 
 ```bash
-git clone https://github.com/Victor-Zarzar/script-maintenance-debian
-cd script-maintenance-debian
+git clone https://github.com/Victor-Zarzar/dev-cleaner-debian
+cd dev-cleaner-debian
 chmod +x maintenance.sh
 ./maintenance.sh
 ```

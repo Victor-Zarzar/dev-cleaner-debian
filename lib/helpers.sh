@@ -1,13 +1,40 @@
 #!/bin/bash
 
 # ============================================
-# Helper Functions
+# Helper Functions (Maintenance)
 # ============================================
 
 print_header() {
-    echo -e "${CYAN}╔════════════════════════════════════════╗${NC}"
-    echo -e "${CYAN}║   Advanced Debian/Ubuntu Maintenance  ║${NC}"
-    echo -e "${CYAN}╚════════════════════════════════════════╝${NC}"
+    local free_space
+    free_space=$(get_disk_usage)
+    local current_date
+    current_date=$(date '+%Y-%m-%d %H:%M:%S')
+    local username
+    username=$(whoami)
+    local os_version
+    os_version=$(get_os_version)
+
+    echo -e "${GREEN}"
+    echo ' ██████╗██╗     ███████╗ █████╗ ███╗   ██╗███████╗██████╗ '
+    echo '██╔════╝██║     ██╔════╝██╔══██╗████╗  ██║██╔════╝██╔══██╗'
+    echo '██║     ██║     █████╗  ███████║██╔██╗ ██║█████╗  ██████╔╝'
+    echo '██║     ██║     ██╔══╝  ██╔══██║██║╚██╗██║██╔══╝  ██╔══██╗'
+    echo '╚██████╗███████╗███████╗██║  ██║██║ ╚████║███████╗██║  ██║'
+    echo ' ╚═════╝╚══════╝╚══════╝╚═╝  ╚═╝╚═╝  ╚═══╝╚══════╝╚═╝  ╚═╝'
+    echo ''
+    echo '██████╗ ███████╗██████╗ ██╗ █████╗ ███╗   ██╗'
+    echo '██╔══██╗██╔════╝██╔══██╗██║██╔══██╗████╗  ██║'
+    echo '██║  ██║█████╗  ██████╔╝██║███████║██╔██╗ ██║'
+    echo '██║  ██║██╔══╝  ██╔══██╗██║██╔══██║██║╚██╗██║'
+    echo '██████╔╝███████╗██████╔╝██║██║  ██║██║ ╚████║'
+    echo '╚═════╝ ╚══════╝╚═════╝ ╚═╝╚═╝  ╚═╝╚═╝  ╚═══╝'
+    echo -e "${NC}"
+    echo -e "  ${GREEN}──────────────────────────────────────────────────────────${NC}"
+    echo -e "  ${GREEN}✦ User:${NC}        $username"
+    echo -e "  ${GREEN}✦ System:${NC}      $os_version"
+    echo -e "  ${GREEN}✦ Free Space:${NC}  $free_space"
+    echo -e "  ${GREEN}✦ Date:${NC}        $current_date"
+    echo -e "  ${GREEN}──────────────────────────────────────────────────────────${NC}"
     echo ""
 }
 
@@ -75,4 +102,20 @@ show_progress() {
 
 get_disk_usage() {
     df -h / | tail -1 | awk '{print $4}'
+}
+
+# ============================================
+# Linux (Debian/Ubuntu) OS version detection
+# Equivalent to macOS's "sw_vers -productVersion"
+# ============================================
+get_os_version() {
+    if [ -f /etc/os-release ]; then
+        # shellcheck disable=SC1091
+        . /etc/os-release
+        echo "${PRETTY_NAME:-$NAME $VERSION}"
+    elif command -v lsb_release >/dev/null 2>&1; then
+        lsb_release -ds
+    else
+        echo "Unknown Debian/Ubuntu system"
+    fi
 }
